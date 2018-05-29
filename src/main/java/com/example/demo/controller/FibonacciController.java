@@ -25,6 +25,7 @@ public class FibonacciController {
 
     @RequestMapping(method = RequestMethod.GET)
     public int getFibonacciNumber(@RequestParam("number") int number) {
+        
         if (numList.indexOf(number) == -1) {
             int curIdx = numList.size();
             for (; curIdx <= number; curIdx++) {
