@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ public class FibonacciController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public int getFibonacciNumber(@RequestParam("number") int number) {
-        
+    @RequestMapping(path="/{number}",method = RequestMethod.GET)
+    public int getFibonacciNumber(@PathVariable("number") int number) {
+
         if (numList.indexOf(number) == -1) {
             int curIdx = numList.size();
             for (; curIdx <= number; curIdx++) {
