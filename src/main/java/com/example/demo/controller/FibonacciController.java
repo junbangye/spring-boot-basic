@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
@@ -10,32 +9,27 @@ import java.util.ArrayList;
  * @author Pogba Ye
  * @create 2018-05-29 2:25 PM
  **/
-@Controller("/fibonacci")
+@RestController
+@RequestMapping("/fibonacci")
 public class FibonacciController {
-    private static ArrayList<Integer> numList;
+    private static ArrayList<Integer> numList = new ArrayList();
 
-    public FibonacciController(){
-        if (numList == null) {
-            numList = new ArrayList();
+    public FibonacciController() {
+        if (numList != null && numList.size() <= 0) {
             numList.add(1);
             numList.add(1);
         }
     }
 
     @RequestMapping("/{number}")
-    @ResponseBody
-    public int getFibonacciNumber(int number){
-        int rtn = 0;
+    public int getFibonacciNumber(int number) {
 
-        if (numList.indexOf(number)==-1) {
-            int tmpMax = numList.size();
-            for (;tmpMax<=number;tmpMax++){
-                numList.add(numList.get(tmpMax-2)+numList.get(tmpMax-1));
+        if (numList.indexOf(number) == -1) {
+            int curIdx = numList.size();
+            for (; curIdx <= number; curIdx++) {
+                numList.add(numList.get(curIdx - 2) + numList.get(curIdx - 1));
             }
-            rtn = numList.get(number-1);
-        } else {
-            rtn = numList.get(number-1);
         }
-        return rtn;
+        return numList.get(number - 1);
     }
 }
