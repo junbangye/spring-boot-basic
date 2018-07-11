@@ -35,5 +35,5 @@ public class FibonacciController {
     }
 
 
-    public int aa(){return 0;}
+    public String aa(){return "0";}
 }
